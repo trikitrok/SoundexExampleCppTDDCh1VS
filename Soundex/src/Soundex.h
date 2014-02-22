@@ -16,6 +16,7 @@ public:
 private:
 
   static const size_t MAX_CODE_LENGTH{4};
+  const std::string NOT_A_DIGIT{"*"};
 
   std::string zeroPad(const std::string& word) const;
   std::string head(const std::string & word) const;
