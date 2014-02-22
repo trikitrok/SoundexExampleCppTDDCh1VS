@@ -24,11 +24,11 @@ std::string Soundex::tail(const std::string & word) const {
 }
 
 std::string Soundex::encodedDigits(const std::string& word) const {
-  if (word.empty()) {
-    return "";
+  std::string encoded = "";
+  for (size_t i = 0; i < word.length(); ++i) {
+    encoded += encodedDigit(word[i]);
   }
-
-  return encodedDigit(word.front());
+  return encoded;
 }
 
 std::string Soundex::encodedDigit(char letter) const {
