@@ -34,7 +34,7 @@ TEST_F(SoundexEncoding, LimitsLengthToFourCharacters) {
 }
 
 TEST_F(SoundexEncoding, IgnoresVowelLikeLetters) {
-  ASSERT_THAT(soundex.encode("Paeiouyhwcdlb"), Eq("P234"));
+  ASSERT_THAT(soundex.encode("PaEiOuYhwcdlb"), Eq("P234"));
 }
 
 TEST_F(SoundexEncoding, CombinesDuplicateEncodings) {
