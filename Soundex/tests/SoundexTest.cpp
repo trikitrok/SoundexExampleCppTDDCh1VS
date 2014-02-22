@@ -20,3 +20,7 @@ TEST_F(SoundexEncoding, PadsWithZeroesToEnsureThreeDigits) {
 TEST_F(SoundexEncoding, ReplacesConsonantsWithApropriateDigits) {
   ASSERT_THAT(soundex.encode("Bx"), Eq("B200"));
 }
+
+TEST_F(SoundexEncoding, IgnoresNonAlphabetics) {
+  ASSERT_THAT(soundex.encode("B#"), Eq("B000"));
+}

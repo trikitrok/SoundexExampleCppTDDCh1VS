@@ -38,5 +38,9 @@ std::string Soundex::encodedDigit(char letter) const {
     {'r', "6"}
   };
 
-  return encodings.find(letter)->second;
+  auto it = encodings.find(letter);
+
+  if (it == encodings.end())
+    return "";
+  return it->second;
 }
