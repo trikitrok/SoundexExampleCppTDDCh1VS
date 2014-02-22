@@ -15,6 +15,7 @@ public:
 
 private:
   std::string zeroPad(const std::string& word);
+  std::string head(const std::string & word);
 };
 
 #endif // !Soundex_h
