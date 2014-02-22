@@ -20,7 +20,11 @@ std::string Soundex::head(const std::string & word) const {
 
 std::string Soundex::encodedDigits(const std::string& word) const {
   if (word.length() > 1) {
-    return "1";
+    return encodedDigit();
   }
   return "";
+}
+
+std::string Soundex::encodedDigit() const {
+  return "1";
 }
