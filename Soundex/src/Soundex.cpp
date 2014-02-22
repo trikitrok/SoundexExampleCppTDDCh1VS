@@ -25,8 +25,11 @@ std::string Soundex::tail(const std::string & word) const {
 
 std::string Soundex::encodedDigits(const std::string& word) const {
   std::string encoded = "";
-  for (auto letter : word)
+  for (auto letter : word) {
+    if (encoded.length() == MAX_CODE_LENGTH - 1)
+      break;
     encoded += encodedDigit(letter);
+  }
   return encoded;
 }
 

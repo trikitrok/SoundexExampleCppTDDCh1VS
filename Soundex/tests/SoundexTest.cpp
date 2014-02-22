@@ -28,3 +28,7 @@ TEST_F(SoundexEncoding, IgnoresNonAlphabetics) {
 TEST_F(SoundexEncoding, ReplacesMultipleConsonantsWithDigits) {
   ASSERT_THAT(soundex.encode("Bcdl"), Eq("B234"));
 }
+
+TEST_F(SoundexEncoding, LimitsLengthToFourCharacters) {
+  ASSERT_THAT(soundex.encode("Dcdlb").length(), Eq(4u));
+}
