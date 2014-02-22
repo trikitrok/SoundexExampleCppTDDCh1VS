@@ -12,6 +12,9 @@ public:
   virtual ~Soundex();
 
   std::string encode(const std::string& word);
+
+private:
+  std::string zeroPad(const std::string& word);
 };
 
 #endif // !Soundex_h
