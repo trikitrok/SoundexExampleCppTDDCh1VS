@@ -27,9 +27,6 @@ std::string Soundex::tail(const std::string & word) const {
 std::string Soundex::encodedDigits(const std::string& word) const {
   std::string encoding = "";
   for (auto letter : word) {
-
-    letter = std::tolower(letter);
-
     if (isComplete(encoding))
       break;
 
@@ -52,11 +49,15 @@ std::string Soundex::encodedDigit(char letter) const {
     {'r', "6"}
   };
 
-  auto it = encodings.find(letter);
+  auto it = encodings.find(lower(letter));
 
   if (it == encodings.end())
     return NOT_A_DIGIT;
   return it->second;
+}
+
+char Soundex::lower(char letter) const {
+  return std::tolower(letter);
 }
 
 bool Soundex::isComplete(const std::string& encoding) const {

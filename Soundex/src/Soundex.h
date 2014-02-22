@@ -26,6 +26,7 @@ private:
   bool isComplete(const std::string& encoded) const;
   std::string lastDigit(const std::string& encoding) const;
   std::string upperFront(const std::string& str) const;
+  char lower(char letter) const;
 };
 
 #endif // !Soundex_h
