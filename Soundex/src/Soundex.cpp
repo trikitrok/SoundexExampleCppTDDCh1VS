@@ -9,7 +9,7 @@ std::string Soundex::encode(const std::string& word) const {
 }
 
 std::string Soundex::zeroPad(const std::string& word) const {
-  auto zerosNeeded = 4 - word.length();
+  auto zerosNeeded = MAX_CODE_LENGTH - word.length();
 
   return word + std::string(zerosNeeded, '0');
 }
