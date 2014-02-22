@@ -24,3 +24,7 @@ TEST_F(SoundexEncoding, ReplacesConsonantsWithApropriateDigits) {
 TEST_F(SoundexEncoding, IgnoresNonAlphabetics) {
   ASSERT_THAT(soundex.encode("B#"), Eq("B000"));
 }
+
+TEST_F(SoundexEncoding, DISABLED_ReplacesMultipleConsonantsWithDigits) {
+  ASSERT_THAT(soundex.encode("Bcdl"), Eq("B234"));
+}
