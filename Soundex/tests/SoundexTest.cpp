@@ -3,18 +3,16 @@
 
 using namespace testing;
 
-TEST(SoundexEncoding, RetainsSoleLetterOfOneLettrWorld) {
+class SoundexEncoding : public Test 
+{
+public:
   Soundex soundex;
+};
 
-  auto encoded = soundex.encode("A");
-  
-  ASSERT_THAT(encoded, Eq("A000"));
+TEST_F(SoundexEncoding, RetainsSoleLetterOfOneLettrWorld) {
+  ASSERT_THAT(soundex.encode("A"), Eq("A000"));
 }
 
-TEST(SoundexEncoding, PadsWithZeroesToEnsureThreeDigits) {
-  Soundex soundex;
-
-  auto encoded = soundex.encode("I");
-
-  ASSERT_THAT(encoded, Eq("I000"));
+TEST_F(SoundexEncoding, PadsWithZeroesToEnsureThreeDigits) {
+  ASSERT_THAT(soundex.encode("I"), Eq("I000"));
 }
