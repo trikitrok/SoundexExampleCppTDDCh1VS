@@ -1,5 +1,7 @@
 #include "Soundex.h"
 
+#include<unordered_map>
+
 Soundex::Soundex() {}
 
 Soundex::~Soundex() {}
@@ -26,7 +28,11 @@ std::string Soundex::encodedDigits(const std::string& word) const {
 }
 
 std::string Soundex::encodedDigit(char letter) const {
-  if (letter == 'c')
-    return "2";
-  return "1";
+  const std::unordered_map<char, std::string> encodings{
+    {'b', "1"},
+    {'c', "2"},
+    {'d', "3"}
+  };
+
+  return encodings.find(letter)->second;
 }
