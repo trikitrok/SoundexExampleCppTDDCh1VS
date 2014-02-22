@@ -8,7 +8,7 @@ Soundex::Soundex() {}
 Soundex::~Soundex() {}
 
 std::string Soundex::encode(const std::string& word) const {
-  return zeroPad(upperFront(head(word)) + encodedDigits(tail(word)));
+  return zeroPad(upperFront(head(word)) + tail(encodedDigits(word)));
 }
 
 std::string Soundex::zeroPad(const std::string& word) const {
@@ -25,8 +25,9 @@ std::string Soundex::tail(const std::string & word) const {
 }
 
 std::string Soundex::encodedDigits(const std::string& word) const {
-  std::string encoding = "";
-  for (auto letter : word) {
+  std::string encoding = encodedDigit(word.front());
+
+  for (auto letter : tail(word)) {
     if (isComplete(encoding))
       break;
 
@@ -61,7 +62,7 @@ char Soundex::lower(char letter) const {
 }
 
 bool Soundex::isComplete(const std::string& encoding) const {
-  return encoding.length() == MAX_CODE_LENGTH - 1;
+  return encoding.length() == MAX_CODE_LENGTH;
 }
 
 std::string Soundex::lastDigit(const std::string& encoding) const {
