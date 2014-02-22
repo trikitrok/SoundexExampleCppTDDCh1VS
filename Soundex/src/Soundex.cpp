@@ -5,13 +5,7 @@ Soundex::Soundex() {}
 Soundex::~Soundex() {}
 
 std::string Soundex::encode(const std::string& word) {
-  auto encoded = head(word);
-
-  if (word.length() > 1) {
-    encoded += "1";
-  }
-
-  return zeroPad(encoded);
+  return zeroPad(head(word) + encodedDigits(word));
 }
 
 std::string Soundex::zeroPad(const std::string& word) {
@@ -22,4 +16,11 @@ std::string Soundex::zeroPad(const std::string& word) {
 
 std::string Soundex::head(const std::string & word) {
   return word.substr(0, 1);
+}
+
+std::string Soundex::encodedDigits(const std::string& word) {
+  if (word.length() > 1) {
+    return "1";
+  }
+  return "";
 }
