@@ -28,7 +28,9 @@ std::string Soundex::encodedDigits(const std::string& word) const {
   for (auto letter : word) {
     if (isComplete(encoding))
       break;
-    encoding += encodedDigit(letter);
+
+    if (encodedDigit(letter) != lastDigit(encoding))
+      encoding += encodedDigit(letter);
   }
   return encoding;
 }
@@ -53,4 +55,10 @@ std::string Soundex::encodedDigit(char letter) const {
 
 bool Soundex::isComplete(const std::string& encoding) const {
   return encoding.length() == MAX_CODE_LENGTH - 1;
+}
+
+std::string Soundex::lastDigit(const std::string& encoding) const {
+  if (encoding.empty())
+    return "";
+  return std::string(1, encoding.back());
 }

@@ -23,6 +23,7 @@ private:
   std::string encodedDigit(char letter) const;
   std::string tail(const std::string & word) const;
   bool isComplete(const std::string& encoded) const;
+  std::string lastDigit(const std::string& encoding) const;
 };
 
 #endif // !Soundex_h

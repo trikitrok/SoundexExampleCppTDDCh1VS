@@ -36,3 +36,12 @@ TEST_F(SoundexEncoding, LimitsLengthToFourCharacters) {
 TEST_F(SoundexEncoding, IgnoresVowelLikeLetters) {
   ASSERT_THAT(soundex.encode("Paeiouyhwcdlb"), Eq("P234"));
 }
+
+TEST_F(SoundexEncoding, CombinesDuplicateEncodings) {
+
+  ASSERT_THAT(soundex.encode("Ab"), soundex.encode("Af"));
+  ASSERT_THAT(soundex.encode("Ac"), soundex.encode("Ag"));
+  ASSERT_THAT(soundex.encode("Ad"), soundex.encode("At"));
+
+  ASSERT_THAT(soundex.encode("Abfcgdt"), Eq("A123"));
+}
