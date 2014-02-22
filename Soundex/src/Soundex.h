@@ -24,6 +24,7 @@ private:
   std::string tail(const std::string & word) const;
   bool isComplete(const std::string& encoded) const;
   std::string lastDigit(const std::string& encoding) const;
+  std::string upperFront(const std::string& str) const;
 };
 
 #endif // !Soundex_h
