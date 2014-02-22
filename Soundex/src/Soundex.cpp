@@ -5,5 +5,5 @@ Soundex::Soundex() {}
 Soundex::~Soundex() {}
 
 std::string Soundex::encode(const std::string& word) {
-  return word;
+  return word + "000";
 }

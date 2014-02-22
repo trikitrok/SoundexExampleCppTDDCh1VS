@@ -8,5 +8,13 @@ TEST(SoundexEncoding, RetainsSoleLetterOfOneLettrWorld) {
 
   auto encoded = soundex.encode("A");
   
-  ASSERT_THAT(encoded, Eq("A"));
+  ASSERT_THAT(encoded, Eq("A000"));
+}
+
+TEST(SoundexEncoding, PadsWithZeroesToEnsureThreeDigits) {
+  Soundex soundex;
+
+  auto encoded = soundex.encode("I");
+
+  ASSERT_THAT(encoded, Eq("I000"));
 }
