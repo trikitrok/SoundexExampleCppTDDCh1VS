@@ -24,13 +24,13 @@ std::string Soundex::tail(const std::string & word) const {
 }
 
 std::string Soundex::encodedDigits(const std::string& word) const {
-  std::string encoded = "";
+  std::string encoding = "";
   for (auto letter : word) {
-    if (encoded.length() == MAX_CODE_LENGTH - 1)
+    if (isComplete(encoding))
       break;
-    encoded += encodedDigit(letter);
+    encoding += encodedDigit(letter);
   }
-  return encoded;
+  return encoding;
 }
 
 std::string Soundex::encodedDigit(char letter) const {
@@ -49,4 +49,8 @@ std::string Soundex::encodedDigit(char letter) const {
   if (it == encodings.end())
     return "";
   return it->second;
+}
+
+bool Soundex::isComplete(const std::string& encoding) const {
+  return encoding.length() == MAX_CODE_LENGTH - 1;
 }

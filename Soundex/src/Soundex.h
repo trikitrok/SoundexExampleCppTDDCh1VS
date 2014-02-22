@@ -22,6 +22,7 @@ private:
   std::string encodedDigits(const std::string& word) const;
   std::string encodedDigit(char letter) const;
   std::string tail(const std::string & word) const;
+  bool isComplete(const std::string& encoded) const;
 };
 
 #endif // !Soundex_h
