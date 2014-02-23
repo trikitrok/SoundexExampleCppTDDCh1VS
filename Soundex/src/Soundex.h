@@ -29,6 +29,7 @@ private:
   char lower(char letter) const;
   void encodeHead(std::string& encoding, const std::string& word) const;
   void encodeTail(std::string& encoding, const std::string& word) const;
+  void encodeLetter(std::string& encoding, char letter) const;
 };
 
 #endif // !Soundex_h

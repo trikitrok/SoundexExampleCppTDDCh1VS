@@ -49,14 +49,16 @@ void Soundex::encodeHead(std::string& encoding, const std::string& word) const {
 
 void Soundex::encodeTail(std::string& encoding, const std::string& word) const {
   for (auto letter : tail(word)) {
-    if (isComplete(encoding))
-      break;
-
-    auto digit = encodedDigit(letter);
-
-    if (digit != NOT_A_DIGIT && digit != lastDigit(encoding))
-      encoding += encodedDigit(letter);
+    if (!isComplete(encoding))
+      encodeLetter(encoding, letter);
   }
+}
+
+void Soundex::encodeLetter(std::string& encoding, char letter) const {
+  auto digit = encodedDigit(letter);
+
+  if (digit != NOT_A_DIGIT && digit != lastDigit(encoding))
+    encoding += encodedDigit(letter);
 }
 
 std::string Soundex::encodedDigit(char letter) const {
