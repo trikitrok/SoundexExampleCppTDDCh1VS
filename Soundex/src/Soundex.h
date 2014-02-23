@@ -27,9 +27,10 @@ private:
   std::string lastDigit(const std::string& encoding) const;
   std::string upperFront(const std::string& str) const;
   char lower(char letter) const;
-  void encodeHead(std::string& encoding, const std::string& word) const;
-  void encodeTail(std::string& encoding, const std::string& word) const;
-  void encodeLetter(std::string& encoding, char letter) const;
+  std::string encodeHead(const std::string& word) const;
+  std::string encodeTail(const std::string& headEncoding, const std::string& word) const;
+  void encodeLetter(std::string& encoding, char letter, char lastLetter) const;
+  bool isVowel(char letter) const;
 };
 
 #endif // !Soundex_h

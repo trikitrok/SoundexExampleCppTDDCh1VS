@@ -9,7 +9,7 @@ public:
   Soundex soundex;
 };
 
-TEST_F(SoundexEncoding, RetainsSoleLetterOfOneLettrWorld) {
+TEST_F(SoundexEncoding, RetainsSoleLetterOfOneLetterWorld) {
   ASSERT_THAT(soundex.encode("A"), Eq("A000"));
 }
 
@@ -56,4 +56,8 @@ TEST_F(SoundexEncoding, IgnoresCasesWhenEncodingConsonants) {
 
 TEST_F(SoundexEncoding, CombinesDuplicateCodesWhen2ndLetterDuplicates1st) {
   ASSERT_THAT(soundex.encode("Bbcd"), Eq("B230"));
+}
+
+TEST_F(SoundexEncoding, DoesNotCombineDuplicateEncodingsSeparatedByVowels) {
+  ASSERT_THAT(soundex.encode("Jbob"), Eq("J110"));
 }

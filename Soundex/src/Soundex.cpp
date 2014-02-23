@@ -8,7 +8,7 @@ Soundex::Soundex() {}
 Soundex::~Soundex() {}
 
 std::string Soundex::encode(const std::string& word) const {
-  return zeroPad(upperFront(head(word)) + tail(encodedDigits(word)));
+  return zeroPad(upperFront(head(word)) + encodedDigits(word));
 }
 
 std::string Soundex::zeroPad(const std::string& word) const {
@@ -25,40 +25,39 @@ std::string Soundex::tail(const std::string & word) const {
 }
 
 std::string Soundex::encodedDigits(const std::string& word) const {
-  /*std::string encoding = encodedDigit(word.front());
+  std::string headEncoding = encodeHead(word);
 
-  for (auto letter : tail(word)) {
-    if (isComplete(encoding))
-      break;
-
-    auto digit = encodedDigit(letter);
-
-    if (digit != NOT_A_DIGIT && digit != lastDigit(encoding))
-      encoding += encodedDigit(letter);
+  if (headEncoding.empty()) {
+    return encodeTail(headEncoding, word);
   }
-  return encoding;*/
-  std::string encoding = "";
-  encodeHead(encoding, word);
-  encodeTail(encoding, word);
+
+  return tail(encodeTail(headEncoding, word));
+}
+
+std::string Soundex::encodeHead(const std::string& word) const {
+  return encodedDigit(word.front());
+}
+
+std::string Soundex::encodeTail(const std::string& headEncoding, const std::string& word) const {
+  std::string encoding = std::string(headEncoding);
+  for (auto i = 1u; i < word.length(); ++i) {
+    if (!isComplete(encoding)) {
+      encodeLetter(encoding, word[i], word[i - 1]);
+    }
+  }
   return encoding;
 }
 
-void Soundex::encodeHead(std::string& encoding, const std::string& word) const {
-  encoding += encodedDigit(word.front());
-}
-
-void Soundex::encodeTail(std::string& encoding, const std::string& word) const {
-  for (auto letter : tail(word)) {
-    if (!isComplete(encoding))
-      encodeLetter(encoding, letter);
-  }
-}
-
-void Soundex::encodeLetter(std::string& encoding, char letter) const {
+void Soundex::encodeLetter(std::string& encoding, char letter, char lastLetter) const {
   auto digit = encodedDigit(letter);
 
-  if (digit != NOT_A_DIGIT && digit != lastDigit(encoding))
-    encoding += encodedDigit(letter);
+  if (digit != NOT_A_DIGIT &&
+    (digit != lastDigit(encoding) || isVowel(lastLetter)))
+    encoding += digit;
+}
+
+bool Soundex::isVowel(char letter) const {
+  return std::string("aeiouyhw").find(lower(letter)) != std::string::npos;
 }
 
 std::string Soundex::encodedDigit(char letter) const {
@@ -70,7 +69,7 @@ std::string Soundex::encodedDigit(char letter) const {
     {'l', "4"},
     {'m', "5"}, {'n', "5"},
     {'r', "6"}
-  };
+};
 
   auto it = encodings.find(lower(letter));
 
