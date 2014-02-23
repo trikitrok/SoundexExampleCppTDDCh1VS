@@ -27,6 +27,8 @@ private:
   std::string lastDigit(const std::string& encoding) const;
   std::string upperFront(const std::string& str) const;
   char lower(char letter) const;
+  void encodeHead(std::string& encoding, const std::string& word) const;
+  void encodeTail(std::string& encoding, const std::string& word) const;
 };
 
 #endif // !Soundex_h
